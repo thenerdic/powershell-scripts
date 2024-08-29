@@ -1,9 +1,11 @@
 $userName = Read-Host -Prompt "Name"
 $userGiveName = Read-Host -Prompt "GivenName"
 $userSurname = Read-Host -Prompt "Surname"
+$userDisplayName = Read-Host -Prompt "Display Name"
 $userOU = Read-Host -Prompt "Organizational Unit"
 $userPrincipalName = Read-Host -Prompt "Principal Name"
 $userPassword = Read-Host -Prompt "Password" -AsSecureString
+$userSamName = $userPrincipalName
 
 # organizational unit
 $ouPath = "OU=$userOU,DC=evilcorp,DC=local"
@@ -22,9 +24,11 @@ $user = @{
     Name = $userName
     GivenName = $userGiveName
     Surname = $userSurname
+    DisplayName = $userDisplayName
     Path = "OU=$userOU,DC=evilcorp,DC=local"
     UserPrincipalName = "$userPrincipalName@evilcorp.local"
     AccountPassword = $userPassword
+    SamAccountName = $userSamName
     ChangePasswordAtLogon = $true
 }
 
